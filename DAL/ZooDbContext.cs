@@ -2,19 +2,18 @@
 
 namespace DAL
 {
-    public class ZooDbContext : DbContext    
+    public class ZooDbContext : DbContext
     {
-        public DbSet<Animal> Animals { get; set; }
-
         public ZooDbContext(DbContextOptions<ZooDbContext> optionsBuilder) : base(optionsBuilder)
         {
             Database.EnsureCreated();
         }
 
-        public ZooDbContext() : base()
+        public ZooDbContext()
         {
-            
         }
+
+        public DbSet<Animal> Animals { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
