@@ -1,17 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using BLL.TypeModels;
-using DAL.Types;
 
 namespace BLL.Models
 {
     public class AnimalModel
     {
+        public readonly int CaloriesPerDayToFeed;
+
+        public AnimalModel()
+        {
+            CaloriesPerDayToFeed = Weight * (DateTime.Now - BirthDate).Days / 1000;
+        }
+
         public int Id { get; set; }
-        
+
         public string Name { get; set; }
-        
-        public AnimalType AnimalType { get; set; }
+
+        public string AnimalType { get; set; }
 
         public DateTime BirthDate { get; set; }
 
@@ -19,13 +23,6 @@ namespace BLL.Models
 
         public DateTime FedToTime { get; set; }
 
-        public ICollection<FoodTypeModel> FoodTypes { get; set; }
-        
-        public readonly int CaloriesPerDayToFeed;
-
-        public AnimalModel()
-        {
-            CaloriesPerDayToFeed = Weight * (DateTime.Now - BirthDate).Days / 1000;
-        }
+        public string FoodType { get; set; }
     }
 }

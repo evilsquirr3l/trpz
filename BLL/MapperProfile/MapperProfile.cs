@@ -8,7 +8,10 @@ namespace BLL.MapperProfile
     {
         public AutoMapperProfile()
         {
-            CreateMap<Animal, AnimalModel>().ReverseMap();
+            CreateMap<Animal, AnimalModel>()
+                .ReverseMap();
+
+            CreateMap<Food, FoodModel>().ReverseMap();
         }
     }
 }

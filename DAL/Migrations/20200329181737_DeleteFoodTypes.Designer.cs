@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DAL.Migrations
+namespace dal.Migrations
 {
     [DbContext(typeof(ZooDbContext))]
-    [Migration("20200329150829_SeedData")]
-    partial class SeedData
+    [Migration("20200329181737_DeleteFoodTypes")]
+    partial class DeleteFoodTypes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,6 @@ namespace DAL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AnimalType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("BirthDate")
@@ -37,6 +36,9 @@ namespace DAL.Migrations
 
                     b.Property<DateTime>("FedToTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("FoodType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -47,42 +49,37 @@ namespace DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Animals");
-                });
-
-            modelBuilder.Entity("DAL.Models.AnimalFoodType", b =>
-                {
-                    b.Property<int>("AnimalId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FoodTypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AnimalId", "FoodTypeId");
-
-                    b.HasIndex("FoodTypeId");
-
-                    b.ToTable("AnimalFoodType");
 
                     b.HasData(
                         new
                         {
-                            AnimalId = 1,
-                            FoodTypeId = 1
+                            Id = 1,
+                            AnimalType = "Mammal",
+                            BirthDate = new DateTime(2020, 3, 28, 21, 17, 36, 662, DateTimeKind.Local).AddTicks(5627),
+                            FedToTime = new DateTime(2020, 3, 29, 23, 17, 36, 665, DateTimeKind.Local).AddTicks(2608),
+                            FoodType = "Meat",
+                            Name = "Alex",
+                            Weight = 190
                         },
                         new
                         {
-                            AnimalId = 2,
-                            FoodTypeId = 2
+                            Id = 2,
+                            AnimalType = "Bird",
+                            BirthDate = new DateTime(2020, 3, 26, 21, 17, 36, 665, DateTimeKind.Local).AddTicks(4128),
+                            FedToTime = new DateTime(2020, 3, 29, 21, 17, 36, 665, DateTimeKind.Local).AddTicks(4153),
+                            FoodType = "Corn",
+                            Name = "Red",
+                            Weight = 2
                         },
                         new
                         {
-                            AnimalId = 3,
-                            FoodTypeId = 3
-                        },
-                        new
-                        {
-                            AnimalId = 3,
-                            FoodTypeId = 2
+                            Id = 3,
+                            AnimalType = "Fish",
+                            BirthDate = new DateTime(2020, 3, 26, 21, 17, 36, 665, DateTimeKind.Local).AddTicks(4198),
+                            FedToTime = new DateTime(2020, 3, 29, 20, 17, 36, 665, DateTimeKind.Local).AddTicks(4202),
+                            FoodType = "Fish feed",
+                            Name = "Nemo",
+                            Weight = 1
                         });
                 });
 
@@ -99,6 +96,9 @@ namespace DAL.Migrations
                     b.Property<int>("Calorific")
                         .HasColumnType("int");
 
+                    b.Property<string>("FoodType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("FoodTypeId")
                         .HasColumnType("int");
 
@@ -110,65 +110,39 @@ namespace DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FoodTypeId");
-
                     b.ToTable("Food");
-                });
-
-            modelBuilder.Entity("DAL.Models.FoodType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("TypeOfFood")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("FoodTypes");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            TypeOfFood = "Meat"
+                            AssimilationMultiplierCoefficient = 1,
+                            Calorific = 3000,
+                            FoodType = "Meat",
+                            FoodTypeId = 0,
+                            Name = "5 kg of meat",
+                            Quantity = 500
                         },
                         new
                         {
                             Id = 2,
-                            TypeOfFood = "Corn"
+                            AssimilationMultiplierCoefficient = 2,
+                            Calorific = 2000,
+                            FoodType = "Corn",
+                            FoodTypeId = 0,
+                            Name = "1 kg of corn",
+                            Quantity = 100
                         },
                         new
                         {
                             Id = 3,
-                            TypeOfFood = "Fish feed"
+                            AssimilationMultiplierCoefficient = 3,
+                            Calorific = 1000,
+                            FoodType = "Fish feed",
+                            FoodTypeId = 0,
+                            Name = "1 kg of fish corn",
+                            Quantity = 50
                         });
-                });
-
-            modelBuilder.Entity("DAL.Models.AnimalFoodType", b =>
-                {
-                    b.HasOne("DAL.Models.Animal", "Animal")
-                        .WithMany("FoodTypes")
-                        .HasForeignKey("AnimalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DAL.Models.FoodType", "FoodType")
-                        .WithMany("Animals")
-                        .HasForeignKey("FoodTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("DAL.Models.Food", b =>
-                {
-                    b.HasOne("DAL.Models.FoodType", "FoodType")
-                        .WithMany()
-                        .HasForeignKey("FoodTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

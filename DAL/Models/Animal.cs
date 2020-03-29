@@ -5,8 +5,8 @@ namespace DAL.Models
     public class Animal : BaseEntity
     {
         public string Name { get; set; }
-        
-        public AnimalType AnimalType { get; set; }
+
+        public string AnimalType { get; set; }
 
         public DateTime BirthDate { get; set; }
 

@@ -6,10 +6,8 @@ namespace DAL.Interfaces
     {
         public IRepository<Animal> AnimalRepository { get; }
 
-        public IRepository<FoodType> FoodTypesRepository { get; }
-
         public IRepository<Food> FoodRepository { get; }
-        
+
         int Save();
     }
 }

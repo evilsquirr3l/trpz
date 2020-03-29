@@ -1,5 +1,4 @@
 ﻿using System;
-using DAL.ModelConfigurations;
 using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +8,7 @@ namespace DAL
     {
         public ZooDbContext(DbContextOptions<ZooDbContext> optionsBuilder) : base(optionsBuilder)
         {
+            Database.EnsureDeleted();
             Database.EnsureCreated();
         }
 
@@ -18,24 +18,21 @@ namespace DAL
 
         public DbSet<Animal> Animals { get; set; }
         public DbSet<Food> Food { get; set; }
-        public DbSet<FoodType> FoodTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer("Server=localhost;Database=Zoo;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=localhost;Database=Zoo2;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
-            modelBuilder.ApplyConfiguration(new AnimalConfig());
 
-            var lion = new Animal()
+            var lion = new Animal
             {
-                AnimalType = AnimalType.Mammals,
+                AnimalType = "Mammal",
                 BirthDate = DateTime.Now.AddDays(-1),
                 FedToTime = DateTime.Now.AddHours(2),
                 FoodType = "Meat",
@@ -44,9 +41,9 @@ namespace DAL
                 Id = 1
             };
 
-            var bird = new Animal()
+            var bird = new Animal
             {
-                AnimalType = AnimalType.Bird,
+                AnimalType = "Bird",
                 BirthDate = DateTime.Now.AddDays(-3),
                 FedToTime = DateTime.Now,
                 FoodType = "Corn",
@@ -55,9 +52,9 @@ namespace DAL
                 Id = 2
             };
 
-            var fish = new Animal()
+            var fish = new Animal
             {
-                AnimalType = AnimalType.Fish,
+                AnimalType = "Fish",
                 BirthDate = DateTime.Now.AddDays(-3),
                 FedToTime = DateTime.Now.AddHours(-1),
                 FoodType = "Fish feed",
@@ -66,7 +63,7 @@ namespace DAL
                 Id = 3
             };
 
-            var meatStorage = new Food()
+            var meatStorage = new Food
             {
                 AssimilationMultiplierCoefficient = 1,
                 Calorific = 3000,
@@ -76,7 +73,7 @@ namespace DAL
                 Id = 1
             };
 
-            var cornStorage = new Food()
+            var cornStorage = new Food
             {
                 AssimilationMultiplierCoefficient = 2,
                 Calorific = 2000,
@@ -86,7 +83,7 @@ namespace DAL
                 Id = 2
             };
 
-            var fishFeedStorage = new Food()
+            var fishFeedStorage = new Food
             {
                 AssimilationMultiplierCoefficient = 3,
                 Calorific = 1000,

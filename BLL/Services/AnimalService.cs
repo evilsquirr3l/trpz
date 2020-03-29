@@ -11,16 +11,16 @@ namespace BLL.Services
     public class AnimalService : IAnimalService
     {
         private readonly IMapper _mapper;
-        private readonly IUnitOfWork _unit;
         private readonly ITimeService _timeService;
-        
+        private readonly IUnitOfWork _unit;
+
         public AnimalService(IUnitOfWork unit, IMapper mapper, ITimeService timeService)
         {
             _unit = unit;
             _mapper = mapper;
             _timeService = timeService;
         }
-        
+
         public IEnumerable<AnimalModel> GetAllAnimals()
         {
             var animals = _unit.AnimalRepository.GetAll();
@@ -46,11 +46,10 @@ namespace BLL.Services
         {
             var animal = GetAnimal(animalId);
 
-            if (!IsAnimalHungry(animal) || !IsAnimalEatsFood(animal, food) || !IsEnoughFood(food))
-            {
-                return false;
-            }
-            
+            if (!IsAnimalHungry(animal) || !IsAnimalEatsFood(animal, food) || !IsEnoughFood(food)) return false;
+
+            food.Quantity -= 1;
+
             var hoursFed = CalculateAssimilationHours(animal, food);
             animal.FedToTime.AddHours(hoursFed);
 
@@ -69,7 +68,7 @@ namespace BLL.Services
 
         private bool IsAnimalEatsFood(AnimalModel animal, FoodModel food)
         {
-            return animal.FoodTypes.Contains(food.FoodType);
+            return animal.FoodType.Contains(food.FoodType);
         }
 
         private int CalculateAssimilationHours(AnimalModel animal, FoodModel food)
