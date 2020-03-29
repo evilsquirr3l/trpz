@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using BLL.Interfaces;
 using BLL.Models;
 using DAL.Interfaces;
 
-namespace BLL
+namespace BLL.Services
 {
     public class AnimalService : IAnimalService
     {

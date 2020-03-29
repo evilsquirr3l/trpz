@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace dal.Migrations
+namespace DAL.Migrations
 {
     public partial class AddTypeToAnimal : Migration
     {

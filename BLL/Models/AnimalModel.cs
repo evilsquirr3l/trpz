@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using BLL.TypeModels;
 using DAL.Types;
 
 namespace BLL.Models

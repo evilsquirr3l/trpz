@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using DAL.Models;
 
-namespace DAL
+namespace DAL.Interfaces
 {
     public interface IRepository<TEntity> where TEntity : BaseEntity
     {

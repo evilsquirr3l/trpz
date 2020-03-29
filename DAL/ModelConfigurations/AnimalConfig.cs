@@ -1,4 +1,5 @@
 ﻿using System;
+using DAL.Models;
 using DAL.Types;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

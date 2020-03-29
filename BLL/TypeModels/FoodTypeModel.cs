@@ -1,4 +1,4 @@
-﻿namespace BLL
+﻿namespace BLL.TypeModels
 {
     public class FoodTypeModel
     {

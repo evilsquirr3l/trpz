@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BLL.Models;
-using DAL;
+using DAL.Models;
 
 namespace BLL.MapperProfile
 {

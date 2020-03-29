@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace dal.Migrations
+namespace DAL.Migrations
 {
     public partial class AddFood : Migration
     {

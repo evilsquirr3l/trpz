@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows;
-using BLL;
+using BLL.Interfaces;
 using BLL.MapperProfile;
+using BLL.Services;
 using DAL;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;

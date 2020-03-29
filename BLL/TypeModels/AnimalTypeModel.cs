@@ -1,4 +1,4 @@
-﻿namespace BLL.Models
+﻿namespace BLL.TypeModels
 {
     public enum AnimalTypeModel
     {
