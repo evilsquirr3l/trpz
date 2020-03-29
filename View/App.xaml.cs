@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using BLL;
+using BLL.MapperProfile;
 using DAL;
 using DAL.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -31,9 +33,6 @@ namespace View
             ConfigureServices(serviceCollection);
 
             serviceCollection.BuildServiceProvider();
-
-            var mainWindow = ServiceProvider.GetRequiredService<MainWindow>();
-            mainWindow.Show();
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -43,6 +42,9 @@ namespace View
             services.AddTransient(typeof(MainWindow));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddMapper();
+            services.AddTransient<IAnimalService, AnimalService>();
+            services.AddTransient<ITimeService, TimeService>();
         }
     }
 }
