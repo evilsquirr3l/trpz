@@ -6,6 +6,8 @@ namespace DAL.Models
     {
         public string Name { get; set; }
         
+        public int FoodTypeId { get; set; }
+        
         public FoodType FoodType { get; set; }
 
         public int Calorific { get; set; }

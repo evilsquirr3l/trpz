@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DAL.Models;
+using DAL.Types;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
@@ -14,6 +16,8 @@ namespace DAL
         }
 
         public DbSet<Animal> Animals { get; set; }
+        public DbSet<Food> Food { get; set; }
+        public DbSet<FoodType> FoodTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

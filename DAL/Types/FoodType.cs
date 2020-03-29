@@ -1,10 +1,9 @@
-﻿namespace DAL.Types
+﻿using DAL.Models;
+
+namespace DAL.Types
 {
-    public enum FoodType
+    public class FoodType : BaseEntity
     {
-        Meat,
-        BoneMeal, 
-        Grain, 
-        Grass
+        public string TypeOfFood { get; set; }
     }
 }
