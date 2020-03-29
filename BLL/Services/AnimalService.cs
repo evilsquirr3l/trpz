@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using BLL.Models;
@@ -38,6 +39,43 @@ namespace BLL
             var animal = _unit.AnimalRepository.GetById(id);
 
             return _mapper.Map<AnimalModel>(animal);
+        }
+
+        public bool FeedAnimal(int animalId, FoodModel food)
+        {
+            var animal = GetAnimal(animalId);
+
+            if (!IsAnimalHungry(animal) || !IsAnimalEatsFood(animal, food) || !IsEnoughFood(food))
+            {
+                return false;
+            }
+            
+            var hoursFed = CalculateAssimilationHours(animal, food);
+            animal.FedToTime.AddHours(hoursFed);
+
+            return true;
+        }
+
+        private bool IsEnoughFood(FoodModel foodModel)
+        {
+            return foodModel.Quantity > 1;
+        }
+
+        private bool IsAnimalHungry(AnimalModel animal)
+        {
+            return animal.FedToTime < DateTime.Now;
+        }
+
+        private bool IsAnimalEatsFood(AnimalModel animal, FoodModel food)
+        {
+            return animal.FoodTypes.Contains(food.FoodType);
+        }
+
+        private int CalculateAssimilationHours(AnimalModel animal, FoodModel food)
+        {
+            var hours = animal.CaloriesPerDayToFeed - food.Calorific / food.AssimilationMultiplierCoefficient;
+
+            return hours;
         }
     }
 }

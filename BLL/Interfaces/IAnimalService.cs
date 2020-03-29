@@ -6,7 +6,8 @@ namespace BLL
     public interface IAnimalService
     {
         IEnumerable<AnimalModel> GetAllAnimals();
-
-        public AnimalModel GetAnimal(int id);
+        IEnumerable<AnimalModel> GetHungryAnimals();
+        AnimalModel GetAnimal(int id);
+        bool FeedAnimal(int animalId, FoodModel food);
     }
 }
