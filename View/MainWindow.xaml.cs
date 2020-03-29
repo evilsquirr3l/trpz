@@ -10,7 +10,6 @@ namespace View
         public MainWindow()
         {
             InitializeComponent();
-            //DataContext = App.ServiceProvider.GetService(typeof())
         }
     }
 }

@@ -6,5 +6,20 @@
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid />
+    <Grid>
+      <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="0.3*" />
+          <ColumnDefinition Width="0.3*" />
+          <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+        <ListBox ItemsSource="{Binding AnimalModels}" SelectedItem="{Binding SelectedAnimal}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
 </Window>
