@@ -1,4 +1,4 @@
-﻿namespace DAL.Types
+﻿namespace DAL.Models
 {
     public enum AnimalType
     {

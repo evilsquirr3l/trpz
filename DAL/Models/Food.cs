@@ -1,6 +1,4 @@
-﻿using DAL.Types;
-
-namespace DAL.Models
+﻿namespace DAL.Models
 {
     public class Food : BaseEntity
     {
@@ -8,7 +6,7 @@ namespace DAL.Models
         
         public int FoodTypeId { get; set; }
         
-        public FoodType FoodType { get; set; }
+        public string FoodType { get; set; }
 
         public int Calorific { get; set; }
 

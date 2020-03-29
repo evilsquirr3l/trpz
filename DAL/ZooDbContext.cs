@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using DAL.ModelConfigurations;
 using DAL.Models;
-using DAL.Types;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAL
@@ -24,7 +23,7 @@ namespace DAL
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            
+
             optionsBuilder.UseSqlServer("Server=localhost;Database=Zoo;Trusted_Connection=True;");
         }
 
@@ -32,56 +31,73 @@ namespace DAL
         {
             base.OnModelCreating(modelBuilder);
             
-            var meat = new FoodType() {TypeOfFood = "Meat"};
-            var corn = new FoodType() {TypeOfFood = "Corn"};
-            var fishFeed = new FoodType() { TypeOfFood = "Fish feed"};
-            
+            modelBuilder.ApplyConfiguration(new AnimalConfig());
+
             var lion = new Animal()
             {
                 AnimalType = AnimalType.Mammals,
                 BirthDate = DateTime.Now.AddDays(-1),
                 FedToTime = DateTime.Now.AddHours(2),
-                FoodTypes = new List<FoodType>() { meat },
+                FoodType = "Meat",
                 Name = "Alex",
-                Weight = 190
+                Weight = 190,
+                Id = 1
             };
-            
+
             var bird = new Animal()
             {
                 AnimalType = AnimalType.Bird,
                 BirthDate = DateTime.Now.AddDays(-3),
                 FedToTime = DateTime.Now,
-                FoodTypes = new List<FoodType>() { corn },
+                FoodType = "Corn",
                 Name = "Red",
-                Weight = 2
+                Weight = 2,
+                Id = 2
             };
-            
+
             var fish = new Animal()
             {
                 AnimalType = AnimalType.Fish,
                 BirthDate = DateTime.Now.AddDays(-3),
                 FedToTime = DateTime.Now.AddHours(-1),
-                FoodTypes = new List<FoodType>() { corn, fishFeed },
+                FoodType = "Fish feed",
                 Name = "Nemo",
-                Weight = 1
+                Weight = 1,
+                Id = 3
             };
-            
+
             var meatStorage = new Food()
             {
                 AssimilationMultiplierCoefficient = 1,
                 Calorific = 3000,
-                FoodType = meat,
-                Name = "Piece of meat",
-                Quantity = 500
+                FoodType = "Meat",
+                Name = "5 kg of meat",
+                Quantity = 500,
+                Id = 1
             };
-            
+
             var cornStorage = new Food()
             {
-                
+                AssimilationMultiplierCoefficient = 2,
+                Calorific = 2000,
+                FoodType = "Corn",
+                Name = "1 kg of corn",
+                Quantity = 100,
+                Id = 2
             };
-            
+
+            var fishFeedStorage = new Food()
+            {
+                AssimilationMultiplierCoefficient = 3,
+                Calorific = 1000,
+                FoodType = "Fish feed",
+                Name = "1 kg of fish corn",
+                Quantity = 50,
+                Id = 3
+            };
+
             modelBuilder.Entity<Animal>().HasData(lion, bird, fish);
-            modelBuilder.Entity<FoodType>().HasData(meat, corn, fishFeed);
+            modelBuilder.Entity<Food>().HasData(meatStorage, cornStorage, fishFeedStorage);
         }
     }
 }

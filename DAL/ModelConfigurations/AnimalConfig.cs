@@ -1,6 +1,5 @@
 ﻿using System;
 using DAL.Models;
-using DAL.Types;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -14,6 +13,7 @@ namespace DAL.ModelConfigurations
                 .Property(a => a.AnimalType)
                 .HasConversion(type => type.ToString(),
                     v => (AnimalType) Enum.Parse(typeof(AnimalType), v));
+            
         }
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using DAL.Types;
 
 namespace DAL.Models
 {
@@ -16,6 +14,6 @@ namespace DAL.Models
 
         public DateTime FedToTime { get; set; }
 
-        public ICollection<FoodType> FoodTypes { get; set; }
+        public string FoodType { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using DAL.Interfaces;
 using DAL.Models;
-using DAL.Types;
 
 namespace DAL
 {

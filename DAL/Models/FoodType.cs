@@ -1,6 +1,4 @@
-﻿using DAL.Models;
-
-namespace DAL.Types
+﻿namespace DAL.Models
 {
     public class FoodType : BaseEntity
     {
