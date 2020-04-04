@@ -59,11 +59,11 @@ namespace View
             services.AddTransient(typeof(MainWindow));
             services.AddScoped<IAnimalRepository, AnimalRepository>();
             services.AddScoped<IFoodRepository, FoodRepository>();
-            //services.AddScoped<IRepository<Food>, Repository<Food>>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMapper();
             services.AddTransient<IAnimalService, AnimalService>();
             services.AddTransient<ITimeService, TimeService>();
+            services.AddTransient<IFoodService, FoodService>();
         }
     }
 }
