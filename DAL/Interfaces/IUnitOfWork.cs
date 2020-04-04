@@ -1,12 +1,12 @@
-﻿using DAL.Models;
+﻿using DAL.Repositories;
 
 namespace DAL.Interfaces
 {
     public interface IUnitOfWork
     {
-        public IRepository<Animal> AnimalRepository { get; }
+        public IAnimalRepository AnimalRepository { get; }
 
-        public IRepository<Food> FoodRepository { get; }
+        public IFoodRepository FoodRepository { get; }
 
         int Save();
     }

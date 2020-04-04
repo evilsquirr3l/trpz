@@ -1,5 +1,5 @@
 ﻿using DAL.Interfaces;
-using DAL.Models;
+using DAL.Repositories;
 
 namespace DAL
 {
@@ -7,15 +7,15 @@ namespace DAL
     {
         private readonly ZooDbContext _context;
 
-        public UnitOfWork(ZooDbContext context, IRepository<Animal> animalRepository, IRepository<Food> foodRepository)
+        public UnitOfWork(ZooDbContext context, IAnimalRepository animalRepository, IFoodRepository foodRepository)
         {
             _context = context;
             AnimalRepository = animalRepository;
             FoodRepository = foodRepository;
         }
 
-        public IRepository<Animal> AnimalRepository { get; }
-        public IRepository<Food> FoodRepository { get; }
+        public IAnimalRepository AnimalRepository { get; }
+        public IFoodRepository FoodRepository { get; }
 
         public int Save()
         {
