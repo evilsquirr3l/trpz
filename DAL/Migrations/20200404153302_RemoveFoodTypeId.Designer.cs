@@ -4,14 +4,16 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace dal.Migrations
 {
     [DbContext(typeof(ZooDbContext))]
-    partial class ZooDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200404153302_RemoveFoodTypeId")]
+    partial class RemoveFoodTypeId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,8 +55,8 @@ namespace dal.Migrations
                         {
                             Id = 1,
                             AnimalType = "Mammal",
-                            BirthDate = new DateTime(2020, 4, 3, 18, 34, 15, 919, DateTimeKind.Local).AddTicks(349),
-                            FedToTime = new DateTime(2020, 4, 4, 20, 34, 15, 921, DateTimeKind.Local).AddTicks(6315),
+                            BirthDate = new DateTime(2020, 4, 3, 18, 33, 2, 361, DateTimeKind.Local).AddTicks(1609),
+                            FedToTime = new DateTime(2020, 4, 4, 20, 33, 2, 364, DateTimeKind.Local).AddTicks(3588),
                             FoodType = "Meat",
                             Name = "Alex",
                             Weight = 190
@@ -63,8 +65,8 @@ namespace dal.Migrations
                         {
                             Id = 2,
                             AnimalType = "Bird",
-                            BirthDate = new DateTime(2020, 4, 1, 18, 34, 15, 921, DateTimeKind.Local).AddTicks(7822),
-                            FedToTime = new DateTime(2020, 4, 4, 18, 34, 15, 921, DateTimeKind.Local).AddTicks(7846),
+                            BirthDate = new DateTime(2020, 4, 1, 18, 33, 2, 364, DateTimeKind.Local).AddTicks(5148),
+                            FedToTime = new DateTime(2020, 4, 4, 18, 33, 2, 364, DateTimeKind.Local).AddTicks(5173),
                             FoodType = "Corn",
                             Name = "Red",
                             Weight = 2
@@ -73,8 +75,8 @@ namespace dal.Migrations
                         {
                             Id = 3,
                             AnimalType = "Fish",
-                            BirthDate = new DateTime(2020, 4, 1, 18, 34, 15, 921, DateTimeKind.Local).AddTicks(7889),
-                            FedToTime = new DateTime(2020, 4, 4, 17, 34, 15, 921, DateTimeKind.Local).AddTicks(7892),
+                            BirthDate = new DateTime(2020, 4, 1, 18, 33, 2, 364, DateTimeKind.Local).AddTicks(5216),
+                            FedToTime = new DateTime(2020, 4, 4, 17, 33, 2, 364, DateTimeKind.Local).AddTicks(5220),
                             FoodType = "Fish feed",
                             Name = "Nemo",
                             Weight = 1

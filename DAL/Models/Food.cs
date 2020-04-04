@@ -4,8 +4,6 @@
     {
         public string Name { get; set; }
 
-        public int FoodTypeId { get; set; }
-
         public string FoodType { get; set; }
 
         public int Calorific { get; set; }

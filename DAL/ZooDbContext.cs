@@ -23,7 +23,7 @@ namespace DAL
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer("Server=localhost;Database=Zoo2;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Server=localhost;Database=ZooDb;Trusted_Connection=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
