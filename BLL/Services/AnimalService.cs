@@ -35,7 +35,7 @@ namespace BLL.Services
             return hungryAnimals;
         }
 
-        public AnimalModel GetAnimal(int id)
+        public AnimalModel GetAnimalById(int id)
         {
             var animal = _unit.AnimalRepository.GetById(id);
 
@@ -44,9 +44,12 @@ namespace BLL.Services
 
         public bool FeedAnimal(int animalId, FoodModel food)
         {
-            var animal = GetAnimal(animalId);
+            var animal = GetAnimalById(animalId);
 
-            if (!IsAnimalHungry(animal) || !IsAnimalEatsFood(animal, food) || !IsEnoughFood(food)) return false;
+            if (!IsAnimalHungry(animal) || !IsAnimalEatsFood(animal, food) || !IsEnoughFood(food))
+            {
+                return false;
+            }
 
             food.Quantity -= 1;
 
