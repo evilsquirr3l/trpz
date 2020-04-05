@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using BLL.Interfaces;
 using BLL.Models;
 using DAL.Interfaces;
+using DAL.Models;
 
 namespace BLL.Services
 {
@@ -13,7 +13,6 @@ namespace BLL.Services
         private readonly IMapper _mapper;
         private readonly ITimeService _timeService;
         private readonly IUnitOfWork _unit;
-
         public AnimalService(IUnitOfWork unit, IMapper mapper, ITimeService timeService)
         {
             _unit = unit;
@@ -54,7 +53,18 @@ namespace BLL.Services
             food.Quantity -= 1;
 
             var hoursFed = CalculateAssimilationHours(animal, food);
-            animal.FedToTime.AddHours(hoursFed);
+            animal.FedToTime = animal.FedToTime.AddHours(hoursFed);
+
+            var animalEntity = _mapper.Map<Animal>(animal);
+            var foodEntity = _mapper.Map<Food>(food);
+
+            
+            _unit.FoodRepository.Update(foodEntity);
+
+            _unit.Save();
+            
+            _unit.AnimalRepository.Update(animalEntity);
+            _unit.Save();
 
             return true;
         }
@@ -66,7 +76,7 @@ namespace BLL.Services
 
         private bool IsAnimalHungry(AnimalModel animal)
         {
-            return animal.FedToTime < DateTime.Now;
+            return animal.FedToTime < _timeService.CurrentTime;
         }
 
         private bool IsAnimalEatsFood(AnimalModel animal, FoodModel food)
@@ -76,9 +86,11 @@ namespace BLL.Services
 
         private int CalculateAssimilationHours(AnimalModel animal, FoodModel food)
         {
-            var hours = animal.CaloriesPerDayToFeed - food.Calorific / food.AssimilationMultiplierCoefficient;
+            var caloriesPerHour = animal.Weight * 42 * (_timeService.CurrentTime - animal.BirthDate).Days;
 
-            return hours;
+            var hoursFed = food.Calorific * food.AssimilationMultiplierCoefficient / caloriesPerHour;
+
+            return hoursFed;
         }
     }
 }

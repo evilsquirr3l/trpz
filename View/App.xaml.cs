@@ -45,7 +45,7 @@ namespace View
             
             serviceCollection.BuildServiceProvider();
             
-            var viewModel = new MainWindowViewModel(ServiceProvider.GetService<ITimeService>(), ServiceProvider.GetService<IAnimalService>());
+            var viewModel = new MainWindowViewModel(ServiceProvider.GetService<ITimeService>(), ServiceProvider.GetService<IAnimalService>(), ServiceProvider.GetService<IFoodService>());
             
             var mainWindow = new MainWindow(){DataContext = viewModel};
             
@@ -55,14 +55,14 @@ namespace View
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ZooDbContext>(opt =>
-                opt.UseSqlServer("Server=localhost;Database=Zoo2;Trusted_Connection=True;"));
+                opt.UseSqlServer("Server=localhost;Database=ZooDb;Trusted_Connection=True;"));
             services.AddTransient(typeof(MainWindow));
             services.AddScoped<IAnimalRepository, AnimalRepository>();
             services.AddScoped<IFoodRepository, FoodRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMapper();
             services.AddTransient<IAnimalService, AnimalService>();
-            services.AddTransient<ITimeService, TimeService>();
+            services.AddSingleton<ITimeService, TimeService>();
             services.AddTransient<IFoodService, FoodService>();
         }
     }

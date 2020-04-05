@@ -8,5 +8,7 @@ namespace DAL.Repositories
         IQueryable<Animal> GetAll();
         
         Animal GetById(int id);
+
+        void Update(Animal animal);
     }
 }

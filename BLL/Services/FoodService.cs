@@ -37,7 +37,7 @@ namespace BLL.Services
         public IEnumerable<FoodModel> GetSuitableFoodForAnimal(int animalId)
         {
             var animal = _animalService.GetAnimalById(animalId);
-            var suitableFood = GetAll().Where(f => f.FoodType == animal.AnimalType);
+            var suitableFood = GetAll().Where(f => f.FoodType.Equals(animal.FoodType));
 
             return suitableFood;
         }

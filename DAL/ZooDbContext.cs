@@ -65,10 +65,10 @@ namespace DAL
 
             var meatStorage = new Food
             {
-                AssimilationMultiplierCoefficient = 1,
-                Calorific = 3000,
+                AssimilationMultiplierCoefficient = 6,
+                Calorific = 30000,
                 FoodType = "Meat",
-                Name = "5 kg of meat",
+                Name = "15 kg of meat",
                 Quantity = 500,
                 Id = 1
             };

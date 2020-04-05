@@ -8,5 +8,7 @@ namespace DAL.Interfaces
         IQueryable<Food> GetAll();
 
         Food GetById(int id);
+
+        void Update(Food food);
     }
 }
