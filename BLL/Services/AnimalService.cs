@@ -83,7 +83,7 @@ namespace BLL.Services
 
         private int CalculateAssimilationHours(AnimalModel animal, FoodModel food)
         {
-            var caloriesPerHour = animal.Weight * 42 * (_timeService.CurrentTime - animal.BirthDate).Days;
+            var caloriesPerHour = animal.Weight * (_timeService.CurrentTime - animal.BirthDate).Days;
 
             var hoursFed = food.Calorific * food.AssimilationMultiplierCoefficient / caloriesPerHour;
 

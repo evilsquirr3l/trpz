@@ -37,7 +37,7 @@ namespace DAL
                 FedToTime = DateTime.Now.AddHours(2),
                 FoodType = "Meat",
                 Name = "Alex",
-                Weight = 190,
+                Weight = 8000,
                 Id = 1
             };
 
@@ -48,7 +48,7 @@ namespace DAL
                 FedToTime = DateTime.Now,
                 FoodType = "Corn",
                 Name = "Red",
-                Weight = 2,
+                Weight = 84,
                 Id = 2
             };
 
@@ -59,7 +59,7 @@ namespace DAL
                 FedToTime = DateTime.Now.AddHours(-1),
                 FoodType = "Fish feed",
                 Name = "Nemo",
-                Weight = 1,
+                Weight = 42,
                 Id = 3
             };
 
