@@ -12,19 +12,8 @@ namespace DAL
             Database.EnsureCreated();
         }
 
-        public ZooDbContext()
-        {
-        }
-
         public DbSet<Animal> Animals { get; set; }
         public DbSet<Food> Food { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-
-            optionsBuilder.UseSqlServer("Server=localhost;Database=ZooDb;Trusted_Connection=True;");
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

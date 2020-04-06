@@ -6,26 +6,26 @@ namespace DAL.Repositories
 {
     public class AnimalRepository : IAnimalRepository
     {
-        private readonly ZooDbContext _dbset;
+        private readonly ZooDbContext _context;
 
-        public AnimalRepository(ZooDbContext dbset)
+        public AnimalRepository(ZooDbContext context)
         {
-            _dbset = dbset;
+            _context = context;
         }
 
         public IQueryable<Animal> GetAll()
         {
-            return _dbset.Animals.AsQueryable().AsNoTracking();
+            return _context.Animals.AsQueryable().AsNoTracking();
         }
 
         public Animal GetById(int id)
         {
-            return _dbset.Animals.AsNoTracking().FirstOrDefault(a => a.Id == id);
+            return _context.Animals.AsNoTracking().FirstOrDefault(a => a.Id == id);
         }
 
         public void Update(Animal animal)
         {
-            _dbset.Animals.Update(animal);
+            _context.Animals.Update(animal);
         }
     }
 }

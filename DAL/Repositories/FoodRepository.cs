@@ -7,26 +7,26 @@ namespace DAL.Repositories
 {
     public class FoodRepository : IFoodRepository
     {
-        private readonly ZooDbContext _dbset;
+        private readonly ZooDbContext _context;
 
-        public FoodRepository(ZooDbContext dbset)
+        public FoodRepository(ZooDbContext context)
         {
-            _dbset = dbset;
+            _context = context;
         }
 
         public IQueryable<Food> GetAll()
         {
-            return _dbset.Food.AsQueryable().AsNoTracking();
+            return _context.Food.AsQueryable().AsNoTracking();
         }
 
         public Food GetById(int id)
         {
-            return _dbset.Food.AsNoTracking().FirstOrDefault(a => a.Id == id);
+            return _context.Food.AsNoTracking().FirstOrDefault(a => a.Id == id);
         }
 
         public void Update(Food food)
         {
-            _dbset.Food.Update(food);
+            _context.Food.Update(food);
         }
     }
 }
