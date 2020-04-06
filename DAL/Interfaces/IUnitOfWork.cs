@@ -8,6 +8,6 @@ namespace DAL.Interfaces
 
         public IFoodRepository FoodRepository { get; }
 
-        int Save();
+        void Save();
     }
 }

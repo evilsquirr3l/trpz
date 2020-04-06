@@ -1,5 +1,7 @@
-﻿using DAL.Interfaces;
+﻿using System.Linq;
+using DAL.Interfaces;
 using DAL.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAL
 {
@@ -17,9 +19,13 @@ namespace DAL
         public IAnimalRepository AnimalRepository { get; }
         public IFoodRepository FoodRepository { get; }
 
-        public int Save()
+        public void Save()
         {
-            return _context.SaveChanges();
+            _context.SaveChanges();
+
+            foreach (var cosmetic in _context.ChangeTracker.Entries().ToArray())
+                if (cosmetic.Entity != null)
+                    cosmetic.State = EntityState.Detached;
         }
     }
 }

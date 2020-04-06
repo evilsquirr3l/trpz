@@ -12,7 +12,7 @@ namespace DAL.Repositories
         {
             _dbset = dbset;
         }
-        
+
         public IQueryable<Animal> GetAll()
         {
             return _dbset.Animals.AsQueryable().AsNoTracking();

@@ -34,20 +34,21 @@
             <RowDefinition Height="0.05*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        
+
         <TextBlock Background="LightGoldenrodYellow" Grid.Column="0" Grid.Row="0" TextAlignment="Center" Width="Auto">All animals</TextBlock>
         <TextBlock Background="LightGoldenrodYellow" Grid.Column="1" Grid.Row="0" TextAlignment="Center" Width="Auto">All food</TextBlock>
-        
+
         <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding AnimalModels}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel HorizontalAlignment="Stretch">
-                        <TextBlock Text="{Binding Path=Name}" TextAlignment="Center" FontWeight="DemiBold" FontSize="14" FontStyle="Italic" Width="Auto" Background="PaleVioletRed"/>
+                        <TextBlock Text="{Binding Path=Name}" TextAlignment="Center" FontWeight="DemiBold"
+                                   FontSize="14" FontStyle="Italic" Width="Auto" Background="PaleVioletRed" />
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Birth date" MinWidth="130"/>
+                            <TextBlock Text="Birth date" MinWidth="130" />
                             <TextBlock Text="Animal type" MinWidth="100" />
                             <TextBlock Text="Weight" MinWidth="100" />
                             <TextBlock Text="Food type" MinWidth="100" />
@@ -69,9 +70,10 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Width="Auto">
-                        <TextBlock Text="{Binding Path=Name}" TextAlignment="Center" FontWeight="DemiBold" FontSize="14" FontStyle="Italic" Width="Auto" Background="MediumSeaGreen"/>
+                        <TextBlock Text="{Binding Path=Name}" TextAlignment="Center" FontWeight="DemiBold"
+                                   FontSize="14" FontStyle="Italic" Width="Auto" Background="MediumSeaGreen" />
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Food type" MinWidth="100"/>
+                            <TextBlock Text="Food type" MinWidth="100" />
                             <TextBlock Text="Calorific value" MinWidth="100" />
                             <TextBlock Text="Quantity" MinWidth="100" />
                         </StackPanel>
@@ -87,15 +89,16 @@
 
         <TextBlock Background="LightGoldenrodYellow" Grid.Column="0" Grid.Row="2" TextAlignment="Center" Width="Auto">Hungry animals</TextBlock>
         <TextBlock Background="LightGoldenrodYellow" Grid.Column="1" Grid.Row="2" TextAlignment="Center" Width="Auto">Suitable food</TextBlock>
-        
+
         <ListBox Grid.Row="3" Grid.Column="0" ItemsSource="{Binding Hungry}"
                  SelectedItem="{Binding SelectedAnimal}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Width="Auto">
-                        <TextBlock Text="{Binding Path=Name}" TextAlignment="Center" FontWeight="DemiBold" FontSize="14" FontStyle="Italic" Width="Auto" Background="PaleVioletRed"/>
+                        <TextBlock Text="{Binding Path=Name}" TextAlignment="Center" FontWeight="DemiBold"
+                                   FontSize="14" FontStyle="Italic" Width="Auto" Background="PaleVioletRed" />
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Birth date" MinWidth="130"/>
+                            <TextBlock Text="Birth date" MinWidth="130" />
                             <TextBlock Text="Animal type" MinWidth="100" />
                             <TextBlock Text="Weight" MinWidth="100" />
                             <TextBlock Text="Food type" MinWidth="100" />
@@ -118,9 +121,10 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Width="Auto">
-                        <TextBlock Text="{Binding Path=Name}" TextAlignment="Center" FontWeight="DemiBold" FontSize="14" FontStyle="Italic" Width="Auto" Background="MediumSeaGreen"/>
+                        <TextBlock Text="{Binding Path=Name}" TextAlignment="Center" FontWeight="DemiBold"
+                                   FontSize="14" FontStyle="Italic" Width="Auto" Background="MediumSeaGreen" />
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Food type" MinWidth="100"/>
+                            <TextBlock Text="Food type" MinWidth="100" />
                             <TextBlock Text="Calorific value" MinWidth="100" />
                             <TextBlock Text="Quantity" MinWidth="100" />
                         </StackPanel>
@@ -135,7 +139,8 @@
         </ListBox>
 
         <DockPanel Grid.Row="4" Grid.ColumnSpan="2">
-            <TextBox MinWidth="40" Text="{Binding Hours, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberValidationTextBox" />
+            <TextBox MinWidth="40" Text="{Binding Hours, UpdateSourceTrigger=PropertyChanged}"
+                     PreviewTextInput="NumberValidationTextBox" />
             <Button Command="{Binding ShiftTime}">Shift time</Button>
             <TextBlock Text="Current time:" />
             <TextBlock Text="{Binding CurrentTime}" />

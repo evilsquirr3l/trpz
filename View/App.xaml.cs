@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows;
 using BLL.Interfaces;
 using BLL.MapperProfile;
@@ -8,7 +9,7 @@ using DAL.Interfaces;
 using DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using WpfLibrary;
+using ViewModel;
 
 namespace View
 {
@@ -17,8 +18,6 @@ namespace View
     /// </summary>
     public partial class App : Application
     {
-        public static IServiceProvider ServiceProvider { get; private set; }
-
         public App()
         {
             var service = new ServiceCollection();
@@ -26,44 +25,38 @@ namespace View
 
             ServiceProvider = service.BuildServiceProvider();
         }
-        
-        /*public IConfiguration Configuration { get; private set; }*/
+
+        public static IServiceProvider ServiceProvider { get; private set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            /*
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
- 
-            Configuration = builder.Build();
-            */
 
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
-            
+
             serviceCollection.BuildServiceProvider();
-            
-            var viewModel = new MainWindowViewModel(ServiceProvider.GetService<ITimeService>(), ServiceProvider.GetService<IAnimalService>(), ServiceProvider.GetService<IFoodService>());
-            
-            var mainWindow = new MainWindow(){DataContext = viewModel};
-            
+
+            var viewModel = new MainWindowViewModel(ServiceProvider.GetService<ITimeService>(),
+                ServiceProvider.GetService<IAnimalService>(), ServiceProvider.GetService<IFoodService>());
+
+            var mainWindow = new MainWindow {DataContext = viewModel};
+
             mainWindow.Show();
         }
 
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ZooDbContext>(opt =>
-                opt.UseSqlServer("Server=localhost;Database=ZooDb;Trusted_Connection=True;"));
+                opt.UseSqlServer(ConfigurationManager.ConnectionStrings["Zoo"].ConnectionString));
             services.AddTransient(typeof(MainWindow));
-            services.AddScoped<IAnimalRepository, AnimalRepository>();
-            services.AddScoped<IFoodRepository, FoodRepository>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IAnimalRepository, AnimalRepository>();
+            services.AddTransient<IFoodRepository, FoodRepository>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddMapper();
-            services.AddTransient<IAnimalService, AnimalService>();
             services.AddSingleton<ITimeService, TimeService>();
-            services.AddTransient<IFoodService, FoodService>();
+            services.AddScoped<IFoodService, FoodService>();
+            services.AddScoped<IAnimalService, AnimalService>();
         }
     }
 }

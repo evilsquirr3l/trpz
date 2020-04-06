@@ -13,6 +13,7 @@ namespace BLL.Services
         private readonly IMapper _mapper;
         private readonly ITimeService _timeService;
         private readonly IUnitOfWork _unit;
+
         public AnimalService(IUnitOfWork unit, IMapper mapper, ITimeService timeService)
         {
             _unit = unit;
@@ -41,34 +42,30 @@ namespace BLL.Services
             return _mapper.Map<AnimalModel>(animal);
         }
 
-        public bool FeedAnimal(int animalId, FoodModel food)
+        public bool FeedAnimal(AnimalModel animal, FoodModel food)
         {
-            var animal = GetAnimalById(animalId);
-
-            if (!IsAnimalHungry(animal) || !IsAnimalEatsFood(animal, food) || !IsEnoughFood(food))
-            {
-                return false;
-            }
+            if (!IsAnimalHungry(animal) || !IsAnimalEatsFood(animal, food) || !IsEnoughFood(food)) return false;
 
             food.Quantity -= 1;
 
             var hoursFed = CalculateAssimilationHours(animal, food);
             animal.FedToTime = animal.FedToTime.AddHours(hoursFed);
 
-            var animalEntity = _mapper.Map<Animal>(animal);
-            var foodEntity = _mapper.Map<Food>(food);
-
-            
-            _unit.FoodRepository.Update(foodEntity);
-
-            _unit.Save();
-            
-            _unit.AnimalRepository.Update(animalEntity);
-            _unit.Save();
+            UpdateEntities(animal, food);
 
             return true;
         }
 
+        private void UpdateEntities(AnimalModel animal, FoodModel food)
+        {
+            var animalEntity = _mapper.Map<Animal>(animal);
+            var foodEntity = _mapper.Map<Food>(food);
+            
+            _unit.FoodRepository.Update(foodEntity);
+            _unit.AnimalRepository.Update(animalEntity);
+            _unit.Save();
+        }
+        
         private bool IsEnoughFood(FoodModel foodModel)
         {
             return foodModel.Quantity > 1;

@@ -6,21 +6,24 @@ using System.Windows;
 using BLL.Interfaces;
 using BLL.Models;
 
-namespace WpfLibrary
+namespace ViewModel
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private readonly IAnimalService _animalService;
-        private readonly ITimeService _timeService;
-        private RelayCommand _feedCommand;
         private readonly IFoodService _foodService;
-        private RelayCommand _shiftTimeCommand;
+        private readonly ITimeService _timeService;
 
-        private ObservableCollection<FoodModel> _suitableFood;
-        private AnimalModel _selectedAnimal;
+        private ObservableCollection<AnimalModel> _animalModels;
+        private ObservableCollection<FoodModel> _foodModels;
         private ObservableCollection<AnimalModel> _hungry;
-        private DateTime _currentTime;
+        private ObservableCollection<FoodModel> _suitableFood;
 
+        private DateTime _currentTime;
+        private RelayCommand _feedCommand;
+        private RelayCommand _shiftTimeCommand;
+        private AnimalModel _selectedAnimal;
+        
         public MainWindowViewModel(ITimeService timeService, IAnimalService animalService, IFoodService foodService)
         {
             _timeService = timeService;
@@ -42,8 +45,9 @@ namespace WpfLibrary
             {
                 _currentTime = value;
                 OnPropertyChanged();
-            } 
+            }
         }
+
         public ObservableCollection<AnimalModel> Hungry
         {
             get => _hungry;
@@ -53,9 +57,6 @@ namespace WpfLibrary
                 OnPropertyChanged();
             }
         }
-
-        private ObservableCollection<AnimalModel> _animalModels;
-        private ObservableCollection<FoodModel> _foodModels;
 
         public ObservableCollection<AnimalModel> AnimalModels
         {
@@ -77,14 +78,6 @@ namespace WpfLibrary
             }
         }
 
-        private void UpdateWindow()
-        {
-            AnimalModels = new ObservableCollection<AnimalModel>(_animalService.GetAllAnimals());
-            Hungry = new ObservableCollection<AnimalModel>(_animalService.GetHungryAnimals());
-            FoodModels = new ObservableCollection<FoodModel>(_foodService.GetAll());
-            CurrentTime = _timeService.CurrentTime;
-        }
-
         public ObservableCollection<FoodModel> SuitableFood
         {
             get => _suitableFood;
@@ -97,13 +90,20 @@ namespace WpfLibrary
 
         public AnimalModel SelectedAnimal
         {
-            get { return _selectedAnimal; }
+            get => _selectedAnimal;
             set
             {
                 _selectedAnimal = value;
                 GetSuitableFood();
                 OnPropertyChanged();
             }
+        }
+        
+        private void GetSuitableFood()
+        {
+            var food = _foodService.GetSuitableFoodForAnimal(SelectedAnimal.Id);
+
+            SuitableFood = new ObservableCollection<FoodModel>(food);
         }
 
         public FoodModel SelectedFoodModel { get; set; }
@@ -115,7 +115,7 @@ namespace WpfLibrary
                 return _feedCommand ??=
                     new RelayCommand(o =>
                     {
-                        _animalService.FeedAnimal(SelectedAnimal.Id, SelectedFoodModel);
+                        _animalService.FeedAnimal(SelectedAnimal, SelectedFoodModel);
 
                         MessageBox.Show($"Покормил {SelectedAnimal.Name}", "Info", MessageBoxButton.OK,
                             MessageBoxImage.Information);
@@ -127,22 +127,25 @@ namespace WpfLibrary
                     }, o => SelectedFoodModel != null);
             }
         }
+        
+        private void UpdateWindow()
+        {
+            AnimalModels = new ObservableCollection<AnimalModel>(_animalService.GetAllAnimals());
+            Hungry = new ObservableCollection<AnimalModel>(_animalService.GetHungryAnimals());
+            FoodModels = new ObservableCollection<FoodModel>(_foodService.GetAll());
+            CurrentTime = _timeService.CurrentTime;
+        }
 
         public RelayCommand ShiftTime
         {
-            get { return _shiftTimeCommand ??= new RelayCommand(o =>
+            get
             {
-                _timeService.ShiftTime(Hours);
-                UpdateWindow();
-            }, o => Hours != 0); 
+                return _shiftTimeCommand ??= new RelayCommand(o =>
+                {
+                    _timeService.ShiftTime(Hours);
+                    UpdateWindow();
+                }, o => Hours != 0);
             }
-        }
-
-        private void GetSuitableFood()
-        {
-            var food = _foodService.GetSuitableFoodForAnimal(SelectedAnimal.Id);
-
-            SuitableFood = new ObservableCollection<FoodModel>(food);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

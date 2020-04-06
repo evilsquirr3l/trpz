@@ -6,7 +6,7 @@ namespace DAL.Repositories
     public interface IAnimalRepository
     {
         IQueryable<Animal> GetAll();
-        
+
         Animal GetById(int id);
 
         void Update(Animal animal);

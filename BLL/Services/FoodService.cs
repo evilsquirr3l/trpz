@@ -9,9 +9,9 @@ namespace BLL.Services
 {
     public class FoodService : IFoodService
     {
-        private readonly IUnitOfWork _unit;
-        private readonly IMapper _mapper;
         private readonly IAnimalService _animalService;
+        private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unit;
 
         public FoodService(IUnitOfWork unit, IMapper mapper, IAnimalService animalService)
         {
@@ -22,7 +22,7 @@ namespace BLL.Services
 
         public IEnumerable<FoodModel> GetAll()
         {
-            var food =  _unit.FoodRepository.GetAll();
+            var food = _unit.FoodRepository.GetAll();
 
             return _mapper.Map<IEnumerable<FoodModel>>(food);
         }

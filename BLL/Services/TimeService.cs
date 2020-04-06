@@ -9,7 +9,7 @@ namespace BLL.Services
 
         public void ShiftTime(int hours)
         {
-             CurrentTime = CurrentTime.AddHours(hours);
+            CurrentTime = CurrentTime.AddHours(hours);
         }
     }
 }
