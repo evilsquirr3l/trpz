@@ -17,15 +17,21 @@ namespace DAL
         }
 
         public IAnimalRepository AnimalRepository { get; }
+        
         public IFoodRepository FoodRepository { get; }
 
         public void Save()
         {
             _context.SaveChanges();
+            
+            Detach();
+        }
 
-            foreach (var cosmetic in _context.ChangeTracker.Entries().ToArray())
-                if (cosmetic.Entity != null)
-                    cosmetic.State = EntityState.Detached;
+        private void Detach()
+        {
+            foreach (var entity in _context.ChangeTracker.Entries().ToArray())
+                if (entity.Entity != null)
+                    entity.State = EntityState.Detached;
         }
     }
 }
