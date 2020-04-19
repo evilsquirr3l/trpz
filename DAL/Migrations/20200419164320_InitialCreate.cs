@@ -47,9 +47,9 @@ namespace dal.Migrations
                 columns: new[] { "Id", "AnimalType", "BirthDate", "FedToTime", "FoodType", "Name", "Weight" },
                 values: new object[,]
                 {
-                    { 1, "Mammal", new DateTime(2020, 4, 3, 18, 34, 15, 919, DateTimeKind.Local).AddTicks(349), new DateTime(2020, 4, 4, 20, 34, 15, 921, DateTimeKind.Local).AddTicks(6315), "Meat", "Alex", 190 },
-                    { 2, "Bird", new DateTime(2020, 4, 1, 18, 34, 15, 921, DateTimeKind.Local).AddTicks(7822), new DateTime(2020, 4, 4, 18, 34, 15, 921, DateTimeKind.Local).AddTicks(7846), "Corn", "Red", 2 },
-                    { 3, "Fish", new DateTime(2020, 4, 1, 18, 34, 15, 921, DateTimeKind.Local).AddTicks(7889), new DateTime(2020, 4, 4, 17, 34, 15, 921, DateTimeKind.Local).AddTicks(7892), "Fish feed", "Nemo", 1 }
+                    { 1, "Mammal", new DateTime(2020, 4, 18, 19, 43, 19, 883, DateTimeKind.Local).AddTicks(3262), new DateTime(2020, 4, 19, 21, 43, 19, 886, DateTimeKind.Local).AddTicks(2490), "Meat", "Alex", 8000 },
+                    { 2, "Bird", new DateTime(2020, 4, 16, 19, 43, 19, 886, DateTimeKind.Local).AddTicks(3955), new DateTime(2020, 4, 19, 19, 43, 19, 886, DateTimeKind.Local).AddTicks(3979), "Corn", "Red", 84 },
+                    { 3, "Fish", new DateTime(2020, 4, 16, 19, 43, 19, 886, DateTimeKind.Local).AddTicks(4022), new DateTime(2020, 4, 19, 18, 43, 19, 886, DateTimeKind.Local).AddTicks(4025), "Fish feed", "Nemo", 42 }
                 });
 
             migrationBuilder.InsertData(
@@ -57,7 +57,7 @@ namespace dal.Migrations
                 columns: new[] { "Id", "AssimilationMultiplierCoefficient", "Calorific", "FoodType", "Name", "Quantity" },
                 values: new object[,]
                 {
-                    { 1, 1, 3000, "Meat", "5 kg of meat", 500 },
+                    { 1, 6, 30000, "Meat", "15 kg of meat", 500 },
                     { 2, 2, 2000, "Corn", "1 kg of corn", 100 },
                     { 3, 3, 1000, "Fish feed", "1 kg of fish corn", 50 }
                 });

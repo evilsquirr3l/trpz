@@ -13,15 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="Migrations\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Remove="Migrations\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Remove="Migrations\**" />
+      <Compile Remove="Migrations\20200329181313_InitialCreate.Designer.cs" />
     </ItemGroup>
 
 </Project>

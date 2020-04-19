@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace dal.Migrations
 {
     [DbContext(typeof(ZooDbContext))]
-    [Migration("20200404153416_InitialCreate")]
+    [Migration("20200419164320_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,31 +55,31 @@ namespace dal.Migrations
                         {
                             Id = 1,
                             AnimalType = "Mammal",
-                            BirthDate = new DateTime(2020, 4, 3, 18, 34, 15, 919, DateTimeKind.Local).AddTicks(349),
-                            FedToTime = new DateTime(2020, 4, 4, 20, 34, 15, 921, DateTimeKind.Local).AddTicks(6315),
+                            BirthDate = new DateTime(2020, 4, 18, 19, 43, 19, 883, DateTimeKind.Local).AddTicks(3262),
+                            FedToTime = new DateTime(2020, 4, 19, 21, 43, 19, 886, DateTimeKind.Local).AddTicks(2490),
                             FoodType = "Meat",
                             Name = "Alex",
-                            Weight = 190
+                            Weight = 8000
                         },
                         new
                         {
                             Id = 2,
                             AnimalType = "Bird",
-                            BirthDate = new DateTime(2020, 4, 1, 18, 34, 15, 921, DateTimeKind.Local).AddTicks(7822),
-                            FedToTime = new DateTime(2020, 4, 4, 18, 34, 15, 921, DateTimeKind.Local).AddTicks(7846),
+                            BirthDate = new DateTime(2020, 4, 16, 19, 43, 19, 886, DateTimeKind.Local).AddTicks(3955),
+                            FedToTime = new DateTime(2020, 4, 19, 19, 43, 19, 886, DateTimeKind.Local).AddTicks(3979),
                             FoodType = "Corn",
                             Name = "Red",
-                            Weight = 2
+                            Weight = 84
                         },
                         new
                         {
                             Id = 3,
                             AnimalType = "Fish",
-                            BirthDate = new DateTime(2020, 4, 1, 18, 34, 15, 921, DateTimeKind.Local).AddTicks(7889),
-                            FedToTime = new DateTime(2020, 4, 4, 17, 34, 15, 921, DateTimeKind.Local).AddTicks(7892),
+                            BirthDate = new DateTime(2020, 4, 16, 19, 43, 19, 886, DateTimeKind.Local).AddTicks(4022),
+                            FedToTime = new DateTime(2020, 4, 19, 18, 43, 19, 886, DateTimeKind.Local).AddTicks(4025),
                             FoodType = "Fish feed",
                             Name = "Nemo",
-                            Weight = 1
+                            Weight = 42
                         });
                 });
 
@@ -113,10 +113,10 @@ namespace dal.Migrations
                         new
                         {
                             Id = 1,
-                            AssimilationMultiplierCoefficient = 1,
-                            Calorific = 3000,
+                            AssimilationMultiplierCoefficient = 6,
+                            Calorific = 30000,
                             FoodType = "Meat",
-                            Name = "5 kg of meat",
+                            Name = "15 kg of meat",
                             Quantity = 500
                         },
                         new
