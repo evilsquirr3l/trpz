@@ -10,5 +10,7 @@ namespace DAL.Interfaces
         Food GetById(int id);
 
         void Update(Food food);
+
+        void Create(Food food);
     }
 }

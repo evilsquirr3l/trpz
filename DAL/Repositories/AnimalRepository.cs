@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using DAL.Interfaces;
 using DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +27,11 @@ namespace DAL.Repositories
         public void Update(Animal animal)
         {
             _context.Animals.Update(animal);
+        }
+
+        public void Create(Animal animal)
+        {
+            _context.Animals.Add(animal);
         }
     }
 }

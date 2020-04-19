@@ -28,5 +28,10 @@ namespace DAL.Repositories
         {
             _context.Food.Update(food);
         }
+
+        public void Create(Food food)
+        {
+            _context.Food.Add(food);
+        }
     }
 }
