@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="9.0.0" />
+      <PackageReference Include="SonarAnalyzer.CSharp" Version="8.5.0.15942" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Business.Abstract\Business.Abstract.csproj" />
+      <ProjectReference Include="..\DAL.Realization\DAL.Realization.csproj" />
+    </ItemGroup>
+
+</Project>

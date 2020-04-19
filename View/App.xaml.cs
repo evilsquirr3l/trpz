@@ -2,8 +2,7 @@
 using System.Configuration;
 using System.Windows;
 using BLL.Interfaces;
-using BLL.MapperProfile;
-using BLL.Services;
+using Business.Realization;
 using DAL.Realization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -57,10 +56,7 @@ namespace View
                 opt.UseSqlServer(ConfigurationManager.ConnectionStrings["Zoo"].ConnectionString));
             services.AddTransient(typeof(MainWindow));
             services.BindDal();
-            services.AddMapper();
-            services.AddSingleton<ITimeService, TimeService>();
-            services.AddScoped<IFoodService, FoodService>();
-            services.AddScoped<IAnimalService, AnimalService>();
+            services.BindBll();
         }
         
         //TODO: binary serializer, project with file, fix use-case, divide interfaces and implementation, installer for each proj, separate models and entities, add CRUD operations 

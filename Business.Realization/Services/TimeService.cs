@@ -1,7 +1,7 @@
 ﻿using System;
 using BLL.Interfaces;
 
-namespace BLL.Services
+namespace Business.Realization.Services
 {
     public class TimeService : ITimeService
     {

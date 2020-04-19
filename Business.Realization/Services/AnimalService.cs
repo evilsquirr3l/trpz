@@ -3,10 +3,10 @@ using System.Linq;
 using AutoMapper;
 using BLL.Interfaces;
 using BLL.Models;
-using DAL.Interfaces;
-using DAL.Models;
+using Dal.Abstract;
+using Entities;
 
-namespace BLL.Services
+namespace Business.Realization.Services
 {
     public class AnimalService : IAnimalService
     {
