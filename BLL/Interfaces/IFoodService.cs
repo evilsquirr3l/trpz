@@ -10,5 +10,7 @@ namespace BLL.Interfaces
         FoodModel GetById(int id);
 
         IEnumerable<FoodModel> GetSuitableFoodForAnimal(int animalId);
+
+        void Create(FoodModel foodModel);
     }
 }

@@ -56,6 +56,15 @@ namespace BLL.Services
             return true;
         }
 
+        public void CreateAnimal(AnimalModel animalModel)
+        {
+            var animal = _mapper.Map<Animal>(animalModel);
+
+            _unit.AnimalRepository.Create(animal);
+            
+            _unit.Save();
+        }
+
         private void UpdateEntities(AnimalModel animal, FoodModel food)
         {
             var animalEntity = _mapper.Map<Animal>(animal);

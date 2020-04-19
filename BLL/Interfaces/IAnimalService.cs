@@ -9,5 +9,6 @@ namespace BLL.Interfaces
         IEnumerable<AnimalModel> GetHungryAnimals();
         AnimalModel GetAnimalById(int id);
         bool FeedAnimal(AnimalModel animal, FoodModel food);
+        void CreateAnimal(AnimalModel animalModel);
     }
 }

@@ -4,6 +4,7 @@ using AutoMapper;
 using BLL.Interfaces;
 using BLL.Models;
 using DAL.Interfaces;
+using DAL.Models;
 
 namespace BLL.Services
 {
@@ -40,6 +41,15 @@ namespace BLL.Services
             var suitableFood = GetAll().Where(f => f.FoodType.Equals(animal.FoodType));
 
             return suitableFood;
+        }
+
+        public void Create(FoodModel foodModel)
+        {
+            var food = _mapper.Map<Food>(foodModel);
+
+            _unit.FoodRepository.Create(food);
+            
+            _unit.Save();
         }
     }
 }
