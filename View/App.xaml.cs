@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Configuration;
 using System.Windows;
 using BLL.Interfaces;
 using Business.Realization;
 using DAL.Realization;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ViewModel;
 
@@ -52,8 +50,6 @@ namespace View
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ZooDbContext>(opt =>
-                opt.UseSqlServer(ConfigurationManager.ConnectionStrings["Zoo"].ConnectionString));
             services.AddTransient(typeof(MainWindow));
             services.BindDal();
             services.BindBll();
