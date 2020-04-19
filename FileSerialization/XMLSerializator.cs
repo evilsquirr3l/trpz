@@ -2,7 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization;
 
-namespace DAL.BinarySerializer
+namespace FileSerialization
 {
     class XMLSerializator : ISerialization
     {

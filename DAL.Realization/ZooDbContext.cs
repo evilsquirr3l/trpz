@@ -1,8 +1,8 @@
 ﻿using System;
-using DAL.Models;
+using Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL
+namespace DAL.Realization
 {
     public class ZooDbContext : DbContext
     {
@@ -10,6 +10,18 @@ namespace DAL
         {
             Database.EnsureDeleted();
             Database.EnsureCreated();
+        }
+
+        public ZooDbContext() : base()
+        {
+            
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var connectionString = "Server=localhost;Database=ZooDb;Trusted_Connection=True;";
+            optionsBuilder.UseSqlServer(connectionString);
+            base.OnConfiguring(optionsBuilder);
         }
 
         public DbSet<Animal> Animals { get; set; }

@@ -1,6 +1,5 @@
-﻿using DAL.Repositories;
-
-namespace DAL.Interfaces
+﻿
+namespace Dal.Abstract
 {
     public interface IUnitOfWork
     {

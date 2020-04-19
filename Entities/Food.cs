@@ -1,4 +1,4 @@
-﻿namespace DAL.Models
+﻿namespace Entities
 {
     public class Food : BaseEntity
     {

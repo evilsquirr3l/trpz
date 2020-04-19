@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using DAL.Interfaces;
-using DAL.Models;
+using Dal.Abstract;
+using Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Repositories
+namespace DAL.Realization.Repositories
 {
     public class AnimalRepository : IAnimalRepository
     {

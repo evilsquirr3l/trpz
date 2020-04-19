@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace DAL.BinarySerializer
+namespace FileSerialization
 {
     class BinarySerializator : ISerialization
     {

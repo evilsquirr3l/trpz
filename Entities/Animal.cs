@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DAL.Models
+namespace Entities
 {
     public class Animal : BaseEntity
     {

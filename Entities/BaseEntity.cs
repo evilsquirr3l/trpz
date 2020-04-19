@@ -1,4 +1,4 @@
-﻿namespace DAL.Models
+﻿namespace Entities
 {
     public abstract class BaseEntity
     {

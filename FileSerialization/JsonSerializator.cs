@@ -2,7 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization.Json;
 
-namespace DAL.BinarySerializer
+namespace FileSerialization
 {
     class JsonSerializator : ISerialization
     {

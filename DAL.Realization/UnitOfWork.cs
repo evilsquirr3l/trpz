@@ -1,9 +1,8 @@
 ﻿using System.Linq;
-using DAL.Interfaces;
-using DAL.Repositories;
+using Dal.Abstract;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL
+namespace DAL.Realization
 {
     public class UnitOfWork : IUnitOfWork
     {

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using DAL.Models;
+using Entities;
 
-namespace DAL.Interfaces
+namespace Dal.Abstract
 {
     public interface IAnimalRepository
     {
