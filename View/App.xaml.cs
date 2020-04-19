@@ -24,9 +24,15 @@ namespace View
             ConfigureServices(service);
 
             ServiceProvider = service.BuildServiceProvider();
+            
+            DisplayRootRegistry.RegisterWindowType<MainWindowViewModel, MainWindow>();
+            DisplayRootRegistry.RegisterWindowType<AddAnimalVM, AddAnimalWindow>();
+            DisplayRootRegistry.RegisterWindowType<AddFoodVM, AddFoodWindow>();
         }
 
         public static IServiceProvider ServiceProvider { get; private set; }
+
+        public DisplayRootRegistry DisplayRootRegistry { get; } = new DisplayRootRegistry();
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -36,13 +42,15 @@ namespace View
             ConfigureServices(serviceCollection);
 
             serviceCollection.BuildServiceProvider();
-
+            
+            var animalCommand = new OpenAddAnimalWindowCommand(){AnimalService = ServiceProvider.GetService<IAnimalService>()};
+            var foodCommand = new OpenAddFoodWindowCommand(){FoodService = ServiceProvider.GetService<IFoodService>()};
             var viewModel = new MainWindowViewModel(ServiceProvider.GetService<ITimeService>(),
-                ServiceProvider.GetService<IAnimalService>(), ServiceProvider.GetService<IFoodService>());
+                ServiceProvider.GetService<IAnimalService>(), ServiceProvider.GetService<IFoodService>(), animalCommand, foodCommand);
 
-            var mainWindow = new MainWindow {DataContext = viewModel};
 
-            mainWindow.Show();
+            DisplayRootRegistry.ShowModalPresentation(viewModel);
+            Shutdown();
         }
 
         private void ConfigureServices(IServiceCollection services)
@@ -58,5 +66,14 @@ namespace View
             services.AddScoped<IFoodService, FoodService>();
             services.AddScoped<IAnimalService, AnimalService>();
         }
+        
+        //TODO: binary serializer, project with file, fix use-case, divide interfaces and implementation, installer for each proj, separate models and entities, add CRUD operations 
     }
+    //1. add crud
+    //2. serializer
+    //3. window
+    //4. divide to separete projects
+    //5. use-case diagram
+    
+    //attribute model
 }

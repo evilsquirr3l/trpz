@@ -27,6 +27,7 @@
     <Grid>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="0.05*" />
             <RowDefinition Height="0.425*" />
             <RowDefinition Height="0.05*" />
@@ -37,11 +38,18 @@
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
+        
+        <Menu Grid.Row="0" Grid.ColumnSpan="2">
+            <MenuItem Header="File">
+                <MenuItem Header="Create animal" Command="{Binding OpenAddAnimalWindow}" />
+                <MenuItem Header="Create food" Command="{Binding OpenCommandFood}" />
+            </MenuItem>
+        </Menu>
 
-        <TextBlock Background="LightGoldenrodYellow" Grid.Column="0" Grid.Row="0" TextAlignment="Center" Width="Auto">All animals</TextBlock>
-        <TextBlock Background="LightGoldenrodYellow" Grid.Column="1" Grid.Row="0" TextAlignment="Center" Width="Auto">All food</TextBlock>
+        <TextBlock Background="LightGoldenrodYellow" Grid.Column="0" Grid.Row="1" TextAlignment="Center" Width="Auto">All animals</TextBlock>
+        <TextBlock Background="LightGoldenrodYellow" Grid.Column="1" Grid.Row="1" TextAlignment="Center" Width="Auto">All food</TextBlock>
 
-        <ListBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding AnimalModels}">
+        <ListBox Grid.Row="2" Grid.Column="0" ItemsSource="{Binding AnimalModels}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel HorizontalAlignment="Stretch">
@@ -66,7 +74,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <ListBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding FoodModels}">
+        <ListBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding FoodModels}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Width="Auto">
@@ -87,10 +95,10 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <TextBlock Background="LightGoldenrodYellow" Grid.Column="0" Grid.Row="2" TextAlignment="Center" Width="Auto">Hungry animals</TextBlock>
-        <TextBlock Background="LightGoldenrodYellow" Grid.Column="1" Grid.Row="2" TextAlignment="Center" Width="Auto">Suitable food</TextBlock>
+        <TextBlock Background="LightGoldenrodYellow" Grid.Column="0" Grid.Row="3" TextAlignment="Center" Width="Auto">Hungry animals</TextBlock>
+        <TextBlock Background="LightGoldenrodYellow" Grid.Column="1" Grid.Row="3" TextAlignment="Center" Width="Auto">Suitable food</TextBlock>
 
-        <ListBox Grid.Row="3" Grid.Column="0" ItemsSource="{Binding Hungry}"
+        <ListBox Grid.Row="4" Grid.Column="0" ItemsSource="{Binding Hungry}"
                  SelectedItem="{Binding SelectedAnimal}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -116,7 +124,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <ListBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding SuitableFood}"
+        <ListBox Grid.Row="4" Grid.Column="1" ItemsSource="{Binding SuitableFood}"
                  SelectedItem="{Binding SelectedFoodModel}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -138,7 +146,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <DockPanel Grid.Row="4" Grid.ColumnSpan="2">
+        <DockPanel Grid.Row="5" Grid.ColumnSpan="2">
             <TextBox MinWidth="40" Text="{Binding Hours, UpdateSourceTrigger=PropertyChanged}"
                      PreviewTextInput="NumberValidationTextBox" />
             <Button Command="{Binding ShiftTime}">Shift time</Button>
