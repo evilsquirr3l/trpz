@@ -40,15 +40,17 @@
             <StackPanel Orientation="Horizontal" Margin="5">
                 <StackPanel Margin="5">
                     <TextBlock Text="Birth date" />
-                    <Calendar SelectedDate="{Binding BirthDate}" DisplayDate="{Binding SelectedDate, RelativeSource={RelativeSource Self}, Mode=OneWay}" />
+                    <Calendar SelectedDate="{Binding BirthDate}"
+                              DisplayDate="{Binding SelectedDate, RelativeSource={RelativeSource Self}, Mode=OneWay}" />
                 </StackPanel>
                 <StackPanel Margin="5">
-                    <TextBlock  Text="Fed to time" />
-                    <Calendar SelectedDate="{Binding FedToTime}" DisplayDate="{Binding SelectedDate, RelativeSource={RelativeSource Self}, Mode=OneWay}" />
+                    <TextBlock Text="Fed to time" />
+                    <Calendar SelectedDate="{Binding FedToTime}"
+                              DisplayDate="{Binding SelectedDate, RelativeSource={RelativeSource Self}, Mode=OneWay}" />
                 </StackPanel>
             </StackPanel>
         </StackPanel>
-        
+
         <Button Grid.Row="1" Command="{Binding CreateAnimal}" CommandParameter="{Binding ElementName=AddWindow}">Create animal</Button>
     </Grid>
 </Window>

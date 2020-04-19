@@ -4,9 +4,7 @@ using System.Windows;
 using BLL.Interfaces;
 using BLL.MapperProfile;
 using BLL.Services;
-using DAL;
-using DAL.Interfaces;
-using DAL.Repositories;
+using DAL.Realization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ViewModel;
@@ -58,9 +56,7 @@ namespace View
             services.AddDbContext<ZooDbContext>(opt =>
                 opt.UseSqlServer(ConfigurationManager.ConnectionStrings["Zoo"].ConnectionString));
             services.AddTransient(typeof(MainWindow));
-            services.AddTransient<IAnimalRepository, AnimalRepository>();
-            services.AddTransient<IFoodRepository, FoodRepository>();
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            services.BindDal();
             services.AddMapper();
             services.AddSingleton<ITimeService, TimeService>();
             services.AddScoped<IFoodService, FoodService>();
