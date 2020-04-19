@@ -1,5 +1,7 @@
-﻿using Dal.Abstract;
+﻿using System.Configuration;
+using Dal.Abstract;
 using DAL.Realization.Repositories;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DAL.Realization
@@ -11,6 +13,9 @@ namespace DAL.Realization
             services.AddSingleton<IAnimalRepository, AnimalRepository>();
             services.AddSingleton<IFoodRepository, FoodRepository>();
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
+            
+            services.AddDbContext<ZooDbContext>(opt =>
+                opt.UseSqlServer(ConfigurationManager.ConnectionStrings["Zoo"].ConnectionString));
 
             return services;
         }
