@@ -23,8 +23,10 @@ namespace ViewModel
         private RelayCommand _feedCommand;
         private RelayCommand _shiftTimeCommand;
         private AnimalModel _selectedAnimal;
+        private IOpenCommandAnimal _openAddAnimalWindow;
+        private IOpenCommandFood _openCommandFood;
         
-        public MainWindowViewModel(ITimeService timeService, IAnimalService animalService, IFoodService foodService)
+        public MainWindowViewModel(ITimeService timeService, IAnimalService animalService, IFoodService foodService, IOpenCommandAnimal openCommandAnimal, IOpenCommandFood openCommandFood)
         {
             _timeService = timeService;
             _animalService = animalService;
@@ -34,6 +36,9 @@ namespace ViewModel
             _hungry = new ObservableCollection<AnimalModel>(_animalService.GetHungryAnimals());
             _foodModels = new ObservableCollection<FoodModel>(_foodService.GetAll());
             _animalModels = new ObservableCollection<AnimalModel>(_animalService.GetAllAnimals());
+
+            _openAddAnimalWindow = openCommandAnimal;
+            _openCommandFood = openCommandFood;
         }
 
         public int Hours { get; set; }
@@ -98,7 +103,10 @@ namespace ViewModel
                 OnPropertyChanged();
             }
         }
-        
+
+        public IOpenCommandAnimal OpenAddAnimalWindow => _openAddAnimalWindow;
+
+        public IOpenCommandFood OpenCommandFood => _openCommandFood;
         private void GetSuitableFood()
         {
             var food = _foodService.GetSuitableFoodForAnimal(SelectedAnimal.Id);
@@ -128,7 +136,7 @@ namespace ViewModel
             }
         }
         
-        private void UpdateWindow()
+        internal void UpdateWindow()
         {
             AnimalModels = new ObservableCollection<AnimalModel>(_animalService.GetAllAnimals());
             Hungry = new ObservableCollection<AnimalModel>(_animalService.GetHungryAnimals());
