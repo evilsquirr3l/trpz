@@ -10,7 +10,6 @@ namespace BLL.Services
 {
     public class FoodService : IFoodService
     {
-        private readonly IAnimalService _animalService;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unit;
 
@@ -18,7 +17,6 @@ namespace BLL.Services
         {
             _unit = unit;
             _mapper = mapper;
-            _animalService = animalService;
         }
 
         public IEnumerable<FoodModel> GetAll()
@@ -37,7 +35,7 @@ namespace BLL.Services
 
         public IEnumerable<FoodModel> GetSuitableFoodForAnimal(int animalId)
         {
-            var animal = _animalService.GetAnimalById(animalId);
+            var animal = _unit.AnimalRepository.GetById(animalId);
             var suitableFood = GetAll().Where(f => f.FoodType.Equals(animal.FoodType));
 
             return suitableFood;
