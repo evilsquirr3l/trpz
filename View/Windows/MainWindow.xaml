@@ -40,13 +40,15 @@
         </Grid.ColumnDefinitions>
 
         <Menu Grid.Row="0" Grid.ColumnSpan="2">
-            <MenuItem Header="Animal">
-                <MenuItem Header="Open animal file" Command="{Binding DeserializeAnimals}" />
-                <MenuItem Header="Save animal file" Command="{Binding SerializeAnimals}" />
-            </MenuItem>
-            <MenuItem Header="Food">
-                <MenuItem Header="Open food file" Command="{Binding DeserializeFood}" />
-                <MenuItem Header="Save food file" Command="{Binding SerializeFood}" />
+            <MenuItem Header="File">
+                <MenuItem Header="Animal">
+                    <MenuItem Header="Open animal file" Command="{Binding DeserializeAnimals}" />
+                    <MenuItem Header="Save animal file" Command="{Binding SerializeAnimals}" />
+                </MenuItem>
+                <MenuItem Header="Food">
+                    <MenuItem Header="Open food file" Command="{Binding DeserializeFood}" />
+                    <MenuItem Header="Save food file" Command="{Binding SerializeFood}" />
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Create animal" Command="{Binding OpenAddAnimalWindow}" />
@@ -158,6 +160,7 @@
             <TextBox MinWidth="40" Text="{Binding Hours, UpdateSourceTrigger=PropertyChanged}"
                      PreviewTextInput="NumberValidationTextBox" />
             <Button Command="{Binding ShiftTime}">Shift time</Button>
+            <Button Command="{Binding UpdateWindowCommand}">Update window</Button>
             <TextBlock Text="Current time:" />
             <TextBlock Text="{Binding CurrentTime}" />
             <Button HorizontalAlignment="Right" Command="{Binding FeedAnimal}">Feed animal</Button>

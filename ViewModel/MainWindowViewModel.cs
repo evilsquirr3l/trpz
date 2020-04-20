@@ -24,6 +24,8 @@ namespace ViewModel
         private DateTime _currentTime;
         private RelayCommand _feedCommand;
         private RelayCommand _shiftTimeCommand;
+        private RelayCommand _updateWindowCommand;
+
         private AnimalModel _selectedAnimal;
 
         private RelayCommand _serializeAnimals;
@@ -34,11 +36,12 @@ namespace ViewModel
         
         private readonly IOpenCommandAnimal _openAddAnimalWindow;
         private readonly IOpenCommandFood _openCommandFood;
+        
 
         private readonly string _animalPath;
         private readonly string _foodPath;
-        
-        
+
+
         public MainWindowViewModel(ITimeService timeService, IAnimalService animalService, IFoodService foodService, IOpenCommandAnimal openCommandAnimal, IOpenCommandFood openCommandFood)
         {
             _timeService = timeService;
@@ -169,6 +172,17 @@ namespace ViewModel
                     _timeService.ShiftTime(Hours);
                     UpdateWindow();
                 }, o => Hours != 0);
+            }
+        }
+        
+        public RelayCommand UpdateWindowCommand
+        {
+            get
+            {
+                return _updateWindowCommand ??= new RelayCommand(o =>
+                {
+                    UpdateWindow();
+                });
             }
         }
         
