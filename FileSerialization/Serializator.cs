@@ -2,7 +2,7 @@
 
 namespace FileSerialization
 {
-    class Serializator
+    public class Serializator
     {
         private readonly ISerialization _serialization;
         

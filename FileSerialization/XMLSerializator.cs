@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 
 namespace FileSerialization
 {
-    class XMLSerializator : ISerialization
+    public class XMLSerializator : ISerialization
     {
         DataContractSerializer xmlSerializer;
         

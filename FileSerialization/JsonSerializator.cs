@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Json;
 
 namespace FileSerialization
 {
-    class JsonSerializator : ISerialization
+    public class JsonSerializator : ISerialization
     {
         DataContractJsonSerializer jsonSerializer;
         public JsonSerializator(Type type)

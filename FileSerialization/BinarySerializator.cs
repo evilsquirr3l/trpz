@@ -3,7 +3,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace FileSerialization
 {
-    class BinarySerializator : ISerialization
+    public class BinarySerializator : ISerialization
     {
         private readonly BinaryFormatter _formatter = new BinaryFormatter();
         
