@@ -1,5 +1,8 @@
-﻿namespace Models
+﻿using System;
+
+namespace Models
 {
+    [Serializable]
     public class FoodModel
     {
         public int Id { get; set; }

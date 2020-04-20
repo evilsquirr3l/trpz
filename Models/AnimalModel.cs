@@ -2,6 +2,7 @@
 
 namespace Models
 {
+    [Serializable]
     public class AnimalModel
     {
         public int Id { get; set; }

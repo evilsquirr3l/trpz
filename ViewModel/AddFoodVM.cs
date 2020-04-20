@@ -40,7 +40,6 @@ namespace ViewModel
         private bool IsFieldsNotEmpty(object _)
         {
             if (string.IsNullOrEmpty(Name)
-                || string.IsNullOrEmpty(Name)
                 || Quantity == 0
                 || AssimilationMultiplierCoefficient == 0
                 || Calorific == 0

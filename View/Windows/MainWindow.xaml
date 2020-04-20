@@ -41,6 +41,10 @@
 
         <Menu Grid.Row="0" Grid.ColumnSpan="2">
             <MenuItem Header="File">
+                <MenuItem Header="Open animal file" Command="{Binding DeserializeAnimals}" />
+                <MenuItem Header="Save animal file" Command="{Binding SerializeAnimals}" />
+            </MenuItem>
+            <MenuItem Header="Edit">
                 <MenuItem Header="Create animal" Command="{Binding OpenAddAnimalWindow}" />
                 <MenuItem Header="Create food" Command="{Binding OpenCommandFood}" />
             </MenuItem>

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Configuration;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using Business.Abstract;
@@ -23,8 +25,15 @@ namespace ViewModel
         private RelayCommand _feedCommand;
         private RelayCommand _shiftTimeCommand;
         private AnimalModel _selectedAnimal;
-        private IOpenCommandAnimal _openAddAnimalWindow;
-        private IOpenCommandFood _openCommandFood;
+
+        private RelayCommand _serializeAnimals;
+        private RelayCommand _deserializeAnimals;
+        
+        private readonly IOpenCommandAnimal _openAddAnimalWindow;
+        private readonly IOpenCommandFood _openCommandFood;
+
+        private readonly string _path;
+        
         
         public MainWindowViewModel(ITimeService timeService, IAnimalService animalService, IFoodService foodService, IOpenCommandAnimal openCommandAnimal, IOpenCommandFood openCommandFood)
         {
@@ -39,6 +48,8 @@ namespace ViewModel
 
             _openAddAnimalWindow = openCommandAnimal;
             _openCommandFood = openCommandFood;
+
+            _path = ConfigurationManager.AppSettings["SerializationPath"];
         }
 
         public int Hours { get; set; }
@@ -153,6 +164,30 @@ namespace ViewModel
                     _timeService.ShiftTime(Hours);
                     UpdateWindow();
                 }, o => Hours != 0);
+            }
+        }
+        
+        public RelayCommand SerializeAnimals
+        {
+            get
+            {
+                return _serializeAnimals ??= new RelayCommand(o =>
+                {
+                    _animalService.Serialize(_animalModels as ICollection<AnimalModel>, _path);
+                });
+            }
+        }
+        
+        public RelayCommand DeserializeAnimals
+        {
+            get
+            {
+                return _deserializeAnimals ??= new RelayCommand(o =>
+                {
+                    var animalsCollection = _animalService.Deserialize(_path);
+                    
+                    AnimalModels = new ObservableCollection<AnimalModel>(animalsCollection);
+                });
             }
         }
 
