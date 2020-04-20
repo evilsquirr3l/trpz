@@ -1,5 +1,5 @@
 ﻿
-namespace Dal.Abstract
+namespace DAL.Abstract
 {
     public interface IUnitOfWork
     {

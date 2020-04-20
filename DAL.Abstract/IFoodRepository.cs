@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Entities;
 
-namespace Dal.Abstract
+namespace DAL.Abstract
 {
     public interface IFoodRepository
     {

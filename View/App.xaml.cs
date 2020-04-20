@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Windows;
-using BLL.Interfaces;
+using Business.Abstract;
 using Business.Realization;
 using DAL.Realization;
 using Microsoft.Extensions.DependencyInjection;
+using View.Commands;
+using View.Windows;
 using ViewModel;
 
 namespace View

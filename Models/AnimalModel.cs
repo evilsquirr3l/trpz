@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BLL.Models
+namespace Models
 {
     public class AnimalModel
     {

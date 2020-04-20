@@ -1,6 +1,6 @@
 ﻿using System.Windows;
-using BLL.Interfaces;
-using BLL.Models;
+using Business.Abstract;
+using Models;
 
 namespace ViewModel
 {

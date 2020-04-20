@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using BLL.Models;
+using Models;
 
-namespace BLL.Interfaces
+namespace Business.Abstract
 {
     public interface IAnimalService
     {

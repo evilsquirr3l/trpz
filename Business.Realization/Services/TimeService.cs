@@ -1,5 +1,5 @@
 ﻿using System;
-using BLL.Interfaces;
+using Business.Abstract;
 
 namespace Business.Realization.Services
 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows;
-using BLL.Interfaces;
+using Business.Abstract;
 using ViewModel;
 
-namespace View
+namespace View.Commands
 {
     public class OpenAddAnimalWindowCommand : IOpenCommandAnimal
     {

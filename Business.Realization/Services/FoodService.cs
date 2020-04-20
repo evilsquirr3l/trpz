@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using BLL.Interfaces;
-using BLL.Models;
-using Dal.Abstract;
+using Business.Abstract;
+using DAL.Abstract;
 using Entities;
+using Models;
 
 namespace Business.Realization.Services
 {

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace View
+namespace View.Windows
 {
     public partial class AddFoodWindow : Window
     {

@@ -1,5 +1,5 @@
 ﻿using System.Windows.Input;
-using BLL.Interfaces;
+using Business.Abstract;
 
 namespace ViewModel
 {

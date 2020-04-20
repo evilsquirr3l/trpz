@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace View
+namespace View.Windows
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml

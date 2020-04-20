@@ -1,5 +1,5 @@
 ﻿using System.Configuration;
-using Dal.Abstract;
+using DAL.Abstract;
 using DAL.Realization.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

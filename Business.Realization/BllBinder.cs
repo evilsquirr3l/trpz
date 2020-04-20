@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BLL.Interfaces;
+using Business.Abstract;
 using Business.Realization.MapperProfile;
 using Business.Realization.Services;
 using Microsoft.Extensions.DependencyInjection;

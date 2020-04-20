@@ -3,8 +3,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using BLL.Interfaces;
-using BLL.Models;
+using Business.Abstract;
+using Models;
 
 namespace ViewModel
 {

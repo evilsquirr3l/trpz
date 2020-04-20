@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using BLL.Models;
 using Entities;
+using Models;
 
 namespace Business.Realization.MapperProfile
 {

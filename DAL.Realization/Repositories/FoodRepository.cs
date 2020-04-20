@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Dal.Abstract;
+using DAL.Abstract;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 
