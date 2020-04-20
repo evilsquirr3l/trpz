@@ -4,6 +4,7 @@ using AutoMapper;
 using Business.Abstract;
 using DAL.Abstract;
 using Entities;
+using FileSerialization;
 using Models;
 
 namespace Business.Realization.Services
@@ -13,12 +14,14 @@ namespace Business.Realization.Services
         private readonly IMapper _mapper;
         private readonly ITimeService _timeService;
         private readonly IUnitOfWork _unit;
+        private readonly ISerialization _serializer;
 
-        public AnimalService(IUnitOfWork unit, IMapper mapper, ITimeService timeService)
+        public AnimalService(IUnitOfWork unit, IMapper mapper, ITimeService timeService, ISerialization serializer)
         {
             _unit = unit;
             _mapper = mapper;
             _timeService = timeService;
+            _serializer = serializer;
         }
 
         public IEnumerable<AnimalModel> GetAllAnimals()
@@ -63,6 +66,16 @@ namespace Business.Realization.Services
             _unit.AnimalRepository.Create(animal);
             
             _unit.Save();
+        }
+
+        public void Serialize(ICollection<AnimalModel> animalModels, string path)
+        {
+            _serializer.Serialization(animalModels, path);
+        }
+
+        public ICollection<AnimalModel> Deserialize(string path)
+        {
+            return _serializer.Deserialization(path) as ICollection<AnimalModel>;
         }
 
         private void UpdateEntities(AnimalModel animal, FoodModel food)

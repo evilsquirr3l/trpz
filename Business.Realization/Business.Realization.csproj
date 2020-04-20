@@ -12,6 +12,7 @@
     <ItemGroup>
       <ProjectReference Include="..\Business.Abstract\Business.Abstract.csproj" />
       <ProjectReference Include="..\DAL.Realization\DAL.Realization.csproj" />
+      <ProjectReference Include="..\FileSerialization\FileSerialization.csproj" />
     </ItemGroup>
 
 </Project>

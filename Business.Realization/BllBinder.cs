@@ -2,6 +2,7 @@
 using Business.Abstract;
 using Business.Realization.MapperProfile;
 using Business.Realization.Services;
+using FileSerialization;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Business.Realization
@@ -13,6 +14,7 @@ namespace Business.Realization
             services.AddSingleton<IAnimalService, AnimalService>();
             services.AddSingleton<IFoodService, FoodService>();
             services.AddSingleton<ITimeService, TimeService>();
+            services.AddSingleton<ISerialization, BinarySerializator>();
 
             var mapperConfig = new MapperConfiguration(c => c.AddProfile(new AutoMapperProfile()));
 
