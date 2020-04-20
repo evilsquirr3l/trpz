@@ -12,5 +12,9 @@ namespace Business.Abstract
         IEnumerable<FoodModel> GetSuitableFoodForAnimal(int animalId);
 
         void Create(FoodModel foodModel);
+        
+        void Serialize(ICollection<FoodModel> foodModels, string path);
+        
+        ICollection<FoodModel> Deserialize(string path);
     }
 }

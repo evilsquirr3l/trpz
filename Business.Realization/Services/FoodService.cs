@@ -4,6 +4,7 @@ using AutoMapper;
 using Business.Abstract;
 using DAL.Abstract;
 using Entities;
+using FileSerialization;
 using Models;
 
 namespace Business.Realization.Services
@@ -12,11 +13,13 @@ namespace Business.Realization.Services
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unit;
+        private readonly ISerialization _serializer;
 
-        public FoodService(IUnitOfWork unit, IMapper mapper, IAnimalService animalService)
+        public FoodService(IUnitOfWork unit, IMapper mapper, IAnimalService animalService, ISerialization serializer)
         {
             _unit = unit;
             _mapper = mapper;
+            _serializer = serializer;
         }
 
         public IEnumerable<FoodModel> GetAll()
@@ -48,6 +51,16 @@ namespace Business.Realization.Services
             _unit.FoodRepository.Create(food);
             
             _unit.Save();
+        }
+
+        public void Serialize(ICollection<FoodModel> foodModels, string path)
+        {
+            _serializer.Serialization(foodModels, path);
+        }
+
+        public ICollection<FoodModel> Deserialize(string path)
+        {
+            return _serializer.Deserialization(path) as ICollection<FoodModel>;
         }
     }
 }

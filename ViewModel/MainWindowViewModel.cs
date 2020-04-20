@@ -29,10 +29,14 @@ namespace ViewModel
         private RelayCommand _serializeAnimals;
         private RelayCommand _deserializeAnimals;
         
+        private RelayCommand _serializeFood;
+        private RelayCommand _deserializeFood;
+        
         private readonly IOpenCommandAnimal _openAddAnimalWindow;
         private readonly IOpenCommandFood _openCommandFood;
 
-        private readonly string _path;
+        private readonly string _animalPath;
+        private readonly string _foodPath;
         
         
         public MainWindowViewModel(ITimeService timeService, IAnimalService animalService, IFoodService foodService, IOpenCommandAnimal openCommandAnimal, IOpenCommandFood openCommandFood)
@@ -48,8 +52,9 @@ namespace ViewModel
 
             _openAddAnimalWindow = openCommandAnimal;
             _openCommandFood = openCommandFood;
-
-            _path = ConfigurationManager.AppSettings["SerializationPath"];
+            
+            _foodPath = ConfigurationManager.AppSettings["FoodSerializationPath"];
+            _animalPath = ConfigurationManager.AppSettings["AnimalSerializationPath"];
         }
 
         public int Hours { get; set; }
@@ -173,7 +178,7 @@ namespace ViewModel
             {
                 return _serializeAnimals ??= new RelayCommand(o =>
                 {
-                    _animalService.Serialize(_animalModels as ICollection<AnimalModel>, _path);
+                    _animalService.Serialize(_animalModels as ICollection<AnimalModel>, _animalPath);
                 });
             }
         }
@@ -184,9 +189,33 @@ namespace ViewModel
             {
                 return _deserializeAnimals ??= new RelayCommand(o =>
                 {
-                    var animalsCollection = _animalService.Deserialize(_path);
+                    var animalsCollection = _animalService.Deserialize(_animalPath);
                     
                     AnimalModels = new ObservableCollection<AnimalModel>(animalsCollection);
+                });
+            }
+        }
+        
+        public RelayCommand SerializeFood
+        {
+            get
+            {
+                return _serializeFood ??= new RelayCommand(o =>
+                {
+                    _foodService.Serialize(_foodModels as ICollection<FoodModel>, _foodPath);
+                });
+            }
+        }
+        
+        public RelayCommand DeserializeFood
+        {
+            get
+            {
+                return _deserializeFood ??= new RelayCommand(o =>
+                {
+                    var foodCollection = _foodService.Deserialize(_foodPath);
+                    
+                    FoodModels = new ObservableCollection<FoodModel>(foodCollection);
                 });
             }
         }
