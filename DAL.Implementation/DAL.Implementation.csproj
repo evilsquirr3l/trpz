@@ -2,6 +2,8 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AssemblyName>DAL.Implementation</AssemblyName>
+        <RootNamespace>DAL.Implementation</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

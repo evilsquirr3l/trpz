@@ -2,7 +2,7 @@
 using Entities;
 using Models;
 
-namespace Business.Realization.MapperProfile
+namespace Business.Implementation.MapperProfile
 {
     public class AutoMapperProfile : Profile
     {

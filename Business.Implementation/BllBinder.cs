@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Business.Abstract;
-using Business.Realization.MapperProfile;
-using Business.Realization.Services;
+using Business.Implementation.MapperProfile;
+using Business.Implementation.Services;
 using FileSerialization;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Business.Realization
+namespace Business.Implementation
 {
     public static class DllBinder
     {

@@ -20,7 +20,7 @@ namespace DAL.Realization.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DAL.Realization.Models.Animal", b =>
+            modelBuilder.Entity("DAL.Implementation.Models.Animal", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,7 +82,7 @@ namespace DAL.Realization.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DAL.Realization.Models.Food", b =>
+            modelBuilder.Entity("DAL.Implementation.Models.Food", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

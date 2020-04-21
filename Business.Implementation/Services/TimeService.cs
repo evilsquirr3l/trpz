@@ -1,7 +1,7 @@
 ﻿using System;
 using Business.Abstract;
 
-namespace Business.Realization.Services
+namespace Business.Implementation.Services
 {
     public class TimeService : ITimeService
     {

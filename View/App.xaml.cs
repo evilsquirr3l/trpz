@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Business.Abstract;
-using Business.Realization;
+using Business.Implementation;
 using DAL.Realization;
 using Microsoft.Extensions.DependencyInjection;
 using View.Commands;
@@ -52,18 +52,9 @@ namespace View
 
         private void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient(typeof(MainWindow));
+            services.AddSingleton(typeof(MainWindow));
             services.BindDal();
             services.BindBll();
         }
-        
-        //TODO: binary serializer, project with file, fix use-case, divide interfaces and implementation, installer for each proj, separate models and entities, add CRUD operations 
     }
-    //1. add crud
-    //2. serializer
-    //3. window
-    //4. divide to separete projects
-    //5. use-case diagram
-    
-    //attribute model
 }

@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Realization", "DAL.Realization\DAL.Realization.csproj", "{0C7E96BC-2988-409D-A3AF-80CB71A2E0E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Implementation", "DAL.Implementation\DAL.Implementation.csproj", "{0C7E96BC-2988-409D-A3AF-80CB71A2E0E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", "{CB6EFCD7-537C-4F16-A952-9945A644A80E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Realization", "Business.Realization\Business.Realization.csproj", "{DA922D17-29D8-4300-B740-1EF2A7AC4648}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Implementation", "Business.Implementation\Business.Implementation.csproj", "{DA922D17-29D8-4300-B740-1EF2A7AC4648}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel", "ViewModel\ViewModel.csproj", "{F71E52F8-0E7E-4EEE-B530-FB6649D095E3}"
 EndProject
